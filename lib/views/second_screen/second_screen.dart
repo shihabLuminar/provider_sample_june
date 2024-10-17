@@ -14,16 +14,31 @@ class _SecondScreenState extends State<SecondScreen> {
   Widget build(BuildContext context) {
     print("rebuild scaffold");
     return Scaffold(
+      backgroundColor: context.watch<CounterScreenController>().currentColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           context.read<CounterScreenController>().onIncrement();
         },
       ),
       body: Center(
-        child: Text(
-          "count",
-          style: TextStyle(color: Colors.red, fontSize: 100),
-        ),
+        child: ListView.separated(
+            shrinkWrap: true,
+            padding: EdgeInsets.symmetric(horizontal: 30),
+            itemBuilder: (context, index) => InkWell(
+                  onTap: () {
+                    context
+                        .read<CounterScreenController>()
+                        .updateColor(CounterScreenController.colors[index]);
+                  },
+                  child: Container(
+                    color: CounterScreenController.colors[index],
+                    height: 80,
+                  ),
+                ),
+            separatorBuilder: (context, index) => SizedBox(
+                  height: 20,
+                ),
+            itemCount: 5),
       ),
     );
   }
