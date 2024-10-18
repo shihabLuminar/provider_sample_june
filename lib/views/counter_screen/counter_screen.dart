@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_sample_june/controllers/counter_screen_controller.dart';
+import 'package:provider_sample_june/controllers/second_screen_controller.dart';
 
 import 'package:provider_sample_june/views/second_screen/second_screen.dart';
 
@@ -18,7 +19,10 @@ class CounterScreen extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SecondScreen(),
+                      builder: (context) => ChangeNotifierProvider(
+                        create: (context) => SecondScreenController(),
+                        child: SecondScreen(),
+                      ),
                     ));
               },
               icon: Icon(Icons.arrow_right))

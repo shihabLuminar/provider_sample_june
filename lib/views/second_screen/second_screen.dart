@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_sample_june/controllers/counter_screen_controller.dart';
+import 'package:provider_sample_june/controllers/second_screen_controller.dart';
 
 class SecondScreen extends StatefulWidget {
   const SecondScreen({super.key});
@@ -14,7 +15,7 @@ class _SecondScreenState extends State<SecondScreen> {
   Widget build(BuildContext context) {
     print("rebuild scaffold");
     return Scaffold(
-      backgroundColor: context.watch<CounterScreenController>().currentColor,
+      backgroundColor: context.watch<SecondScreenController>().currentColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           context.read<CounterScreenController>().onIncrement();
@@ -27,11 +28,11 @@ class _SecondScreenState extends State<SecondScreen> {
             itemBuilder: (context, index) => InkWell(
                   onTap: () {
                     context
-                        .read<CounterScreenController>()
-                        .updateColor(CounterScreenController.colors[index]);
+                        .read<SecondScreenController>()
+                        .updateColor(SecondScreenController.colors[index]);
                   },
                   child: Container(
-                    color: CounterScreenController.colors[index],
+                    color: SecondScreenController.colors[index],
                     height: 80,
                   ),
                 ),
